@@ -1,0 +1,24 @@
+<%= simple_form_for @exchange do |f| %>
+  <%= f.input :amount,
+              label: 'What amount would you like to exchange?',
+              required: true,
+              input_html: { min: 1} %>
+  <%= f.input :base_currency,
+              selected: [ "EUR" ],
+              collection: ["EUR","AUD","CAD","CHF","CZK","DKK",
+                           "GBP","HKD","HUF","JPY","KRW","NOK",
+                           "NZD","PLN","SEK","SGD","USD","ZAR"],
+              required: true %>
+  <%= f.input :target_currency,
+              selected: [ "USD" ],
+              collection: ["EUR","AUD","CAD","CHF","CZK","DKK",
+                           "GBP","HKD","HUF","JPY","KRW","NOK",
+                           "NZD","PLN","SEK","SGD","USD","ZAR"],
+              required: true %>
+  <%= f.input :waiting_time,
+              label: 'How many weeks would you like to wait?',
+              required: true,
+              hint: "Maximum 250 weeks",
+              input_html: { min: 1, max: 250 }%>
+  <%= f.button :submit %>
+<% end %>

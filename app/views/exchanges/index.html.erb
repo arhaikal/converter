@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="jumbotron main-page">
+    <h1 class="display-3">Exchangify</h1>
+    <p class="lead">Welcome to the exchange world where money never sleeps.</p>
+    <hr class="my-4">
+    <p>Predict the future of the exchange rate you desire.</p>
+    <p class="lead">
+      <%= link_to "Create a new exchange", new_exchange_path, class: 'btn btn-primary btn-lg' %>
+    </p>
+  </div>
+  <% if current_user.exchanges.count > 0 %>
+  <div class="jumbotron main-page">
+    <h2 class="display-4">Your exchanges</h2>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Amount / Currency</th>
+        <th>Target Currency</th>
+        <th>Start Date</th>
+      </tr>
+      </thead>
+      <% @exchanges.each do |f| %>
+        <% if f.user_id == current_user.id %>
+          <tbody>
+            <tr>
+              <td scope="row"><%="#{f.amount} #{f.base_currency}"%></td>
+              <td><%= f.target_currency %></td>
+              <td><%= f.created_at.to_datetime.strftime("%Y-%m-%d") %></td>
+              <td><%= link_to "View", exchange_path(f), class: "btn btn-success" %></td>
+              <td><%= link_to "Edit", edit_exchange_path(f), class: "btn btn-info" %></li>
+              <td><%= link_to "Delete", exchange_path(f), method: :delete, class: "btn btn-danger" %></td>
+            </tr>
+          </tbody>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+  <% end %>

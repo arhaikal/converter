@@ -1,0 +1,28 @@
+############################ Configuration for rubocop# in .rubocop.yml # Most of these are disabling existing cops, primarily# due to a smattering of different styles and loose# guidlines for contributions.## Any of these may be changed.
+
+
+AllCops:
+  TargetRubyVersion: 2.2
+  Excludes:
+    - db/schema.rb
+    - config/initializers/**
+    - config/environments/**
+    - config/**
+    - db/migrate/**
+    - spec/**
+
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  IgnoredPatterns: ['#']
+
+StringLiterals:
+  Enabled: false
+
+EndOfLine:
+  Enabled: false
+
+Style/EndOfLine:
+  EnforcedStyle: lf

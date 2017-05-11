@@ -1,0 +1,54 @@
+<%= link_to "Main Page",
+            exchanges_path,
+            class: 'btn btn-info btn-lg btn-block fixed-top' %>
+
+<div class="jumbotron">
+
+  <h2> Results for Exchange </h2>
+  <h3> Date: <%= @exchange.created_at.strftime("%Y-%m-%d") %></h3>
+  <h3> <%= "From #{@exchange.base_currency} to #{@exchange.target_currency}" %></h3>
+  <%= line_chart @predictions.pluck(:date,:rate) %>
+
+  <% if @predictions.length > 3 %>
+  <h3>Top 3 dates to make the exchange</h3>
+  <table class="table">
+    <thead class="thead-default">
+      <tr>
+        <th>Week</th>
+        <th>1 <%= @exchange.base_currency %></th>
+        <th><%= "#{@exchange.amount} #{@exchange.base_currency}" %></th>
+      </tr>
+    </thead>
+    <% @top_three.each do |prediction| %>
+    <tbody>
+      <tr class="table-success">
+        <th scope="row"> <%= prediction[:date] - 1.week %> till <%= prediction[:date] %> </th>
+        <td><%= "#{prediction[:rate].round(4)} #{@exchange.target_currency}" %></td>
+        <td><%= prediction[:amount].round(2)  %> <%= @exchange.target_currency %></td>
+      </tr>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <% end %>
+  <h3>All dates and rates</h3>
+  <table class="table">
+    <thead class="thead-default">
+      <tr>
+        <th>Week</th>
+        <th>1 <%= @exchange.base_currency %></th>
+        <th><%= "#{@exchange.amount} #{@exchange.base_currency}" %></th>
+      </tr>
+    </thead>
+    <% @predictions.each do |prediction| %>
+    <tbody>
+      <tr>
+        <th scope="row"> <%= prediction[:date] - 1.week %> till <%= prediction[:date] %> </th>
+        <td><%= "#{prediction[:rate].round(4)} #{@exchange.target_currency}" %></td>
+        <td><%= prediction[:amount].round(2)  %> <%= @exchange.target_currency %></td>
+      </tr>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
