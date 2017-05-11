@@ -6,9 +6,11 @@ default: &default
 
 development:
   <<: *default
-  database: converter_development
-  username: postgres
-  password: 1988iloveyou
+  database: d7edqs5v83revc
+  host: ec2-54-228-182-57.eu-west-1.compute.amazonaws.com
+  port: 5432
+  username: zehmhcnoseayuq
+  password: e2687081198dd6de3e76add0b056227f2357d86eee262a9432c32faad7776016
 
 test:
   <<: *default
@@ -20,7 +22,7 @@ test:
 production:
   <<: *default
   database: d7edqs5v83revc
-  host: ec2-54-235-181-120.compute-1.amazonaws.com
+  host: ec2-54-228-182-57.eu-west-1.compute.amazonaws.com
   port: 5432
-  username: pggfunnhbgcznu
-  password: 621dd85ff6801175eac7ad4c0d44661a7224247d63c962c4dea2dd45b2b50324
+  username: zehmhcnoseayuq
+  password: e2687081198dd6de3e76add0b056227f2357d86eee262a9432c32faad7776016
