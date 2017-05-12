@@ -6,11 +6,9 @@ default: &default
 
 development:
   <<: *default
-  database: d7edqs5v83revc
-  host: ec2-54-228-182-57.eu-west-1.compute.amazonaws.com
-  port: 5432
-  username: zehmhcnoseayuq
-  password: e2687081198dd6de3e76add0b056227f2357d86eee262a9432c32faad7776016
+  database: converter_development
+  username: postgres
+  password: 1988iloveyou
 
 test:
   <<: *default
@@ -21,7 +19,7 @@ test:
 
 production:
   <<: *default
-  database: d7edqs5v83revc
+  database: d2971plb4n45lr
   host: ec2-54-228-182-57.eu-west-1.compute.amazonaws.com
   port: 5432
   username: zehmhcnoseayuq
