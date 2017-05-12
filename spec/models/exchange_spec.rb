@@ -7,8 +7,10 @@ RSpec.describe Exchange, :type => :model do
 
 
   subject {
-    described_class.new(amount: 100, base_currency: "EUR",
-                        target_currency: "USD", waiting_time: 2,
+    described_class.new(amount: 100,
+                        base_currency: "EUR",
+                        target_currency: "USD",
+                        waiting_time: 2,
                         user_id: user.id)
   }
 

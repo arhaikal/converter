@@ -29,5 +29,4 @@ feature 'Exchange' do
     fill_in "user[password]", with: "password"
     click_button "Log in"
   end
-
 end

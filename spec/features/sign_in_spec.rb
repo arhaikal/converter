@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'factory_girl_rails'
 
 feature 'Sign in' do
-  let(:user) {FactoryGirl.create(:user)}
+  let(:user) { FactoryGirl.create(:user) }
 
 
   scenario 'visiting the site to sign in' do

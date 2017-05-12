@@ -26,3 +26,6 @@ EndOfLine:
 
 Style/EndOfLine:
   EnforcedStyle: lf
+
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
