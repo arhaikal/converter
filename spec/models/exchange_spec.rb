@@ -21,6 +21,11 @@ RSpec.describe Exchange, :type => :model do
     expect(subject).to_not be_valid
   end
 
+  it "is not valid without a negative amount" do
+    subject.amount = -12
+    expect(subject).to_not be_valid
+  end
+
   it "is not valid without a base_currency" do
     subject.base_currency = nil
     expect(subject).to_not be_valid
@@ -35,4 +40,15 @@ RSpec.describe Exchange, :type => :model do
     subject.waiting_time = nil
     expect(subject).to_not be_valid
   end
+
+  it "is not valid without a negative waiting_time" do
+    subject.waiting_time = -12
+    expect(subject).to_not be_valid
+  end
+
+  it "is not valid with waiting_time greater that 250" do
+    subject.waiting_time = 251
+    expect(subject).to_not be_valid
+  end
+
 end
