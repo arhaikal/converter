@@ -1,42 +1,36 @@
 class GetRate
-  def initialize(base, target, time)
+  API_UPDATE_TIME = Time.parse("6:30 pm")
+
+  def initialize(base, target, weeks)
     @base = base
     @target = target
-    @time = time
+    @weeks = weeks
   end
 
   def dates_in_db
-    historical_id = HistoricalRate.where(date: all_dates)
-                                  .select(:id)
-    historical_id.ids
+    HistoricalRate.where(date: working_dates).pluck(:id)
   end
 
   def rates_in_db
-    rates_in_db = Rate.where(historical_rate_id: dates_in_db)
-                      .select(@base.to_s, @target.to_s)
-                      .map { |rate| rate[@target] / rate[@base] }
-    rates_in_db
+    Rate.where(historical_rate_id: dates_in_db)
+      .pluck(@base.to_s, @target.to_s)
+      .map { |base_rate, target_rate| target_rate / base_rate }
   end
 
-
-  def all_dates
-    (start_date..latest_date).select { |d| (1..5).cover?(d.wday) }
+  def working_dates
+    # What about national holidays?
+    (start_date..latest_date).select(&:on_weekday?)
   end
 
   private
 
   def latest_date
-    api_update_time = Time.parse("6:30 pm")
-    # This condition is because the api updates at that time
-    if Time.now < api_update_time
-      Date.yesterday
-    else
-      Date.today
-    end
+    # This condition is because the api updates at that weeks
+    Time.now < API_UPDATE_TIME ? Date.yesterday : Date.today
   end
 
   def start_date
     # The total should be 5 days not 6 days so we don't have overlap
-    latest_date - ((@time * 7) - 1).day
+    latest_date - (@weeks.weeks - 1.day)
   end
 end

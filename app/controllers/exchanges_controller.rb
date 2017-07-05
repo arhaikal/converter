@@ -11,9 +11,7 @@ class ExchangesController < ApplicationController
   end
 
   def create
-    @exchange = Exchange.new(exchange_params)
-    @exchange.user_id = current_user.id
-
+    @exchange = current_user.exchanges.build(exchange_params)
     if @exchange.save
       redirect_to @exchange
     else
@@ -61,6 +59,6 @@ class ExchangesController < ApplicationController
   end
 
   def find_exchange
-    @exchange = Exchange.find(params[:id])
+    @exchange = current_user.exchanges.find(params[:id])
   end
 end

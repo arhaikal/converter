@@ -7,17 +7,9 @@ class Prediction
   end
 
   def final_prediction
-    prediction = []
-    rates = rates_prediction
-    dates = week_year_array
-
-    iterate rates, dates do |rate, date|
-      prediction << { "rate": rate,
-                      "date": date,
-                      "amount": (rate * @amount) }
+    rates_prediction.zip(week_year_array).map do |rate, date|
+      { "rate": rate, "date": date, "amount": (rate * @amount) }
     end
-
-    prediction
   end
 
   private
@@ -32,8 +24,7 @@ class Prediction
   end
 
   def weekly_percentage_change_array
-    a = percentage_wraper
-    a.percentage_change_per_week
+    percentage_wraper.percentage_change_per_week
   end
 
   # ((percent/100) * number) + number
