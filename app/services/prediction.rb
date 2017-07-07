@@ -15,16 +15,12 @@ class Prediction
   private
 
   def today_rate
-    rate = GetRate.new(@base, @target, @time).rates_in_db
-    rate.last
-  end
+    GetRate.new(@base, @target, @time).rates_in_db.last
 
-  def percentage_wraper
-    Percent.new(@amount, @base, @target, @time)
   end
 
   def weekly_percentage_change_array
-    percentage_wraper.percentage_change_per_week
+    Percent.new(@amount, @base, @target, @time).percentage_change_per_week
   end
 
   # ((percent/100) * number) + number
@@ -48,19 +44,6 @@ class Prediction
   end
 
   def week_year_array
-    dates_array = []
-    while @time > 0
-      date = date_of_next(@time)
-      dates_array.unshift(date)
-      @time -= 1
-    end
-    dates_array
+    @time.times.map { |i| Date.today + (i + 1).weeks }
   end
-
-  def date_of_next(weeks)
-    date  = Date.parse(Time.now.to_datetime.strftime("%A"))
-    delta = date > Date.today ? 0 : (7 * weeks)
-    date + delta
-  end
-
 end

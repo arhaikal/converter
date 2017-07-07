@@ -7,10 +7,10 @@ class Percent
   end
 
   def percentage_change_per_week
-    percentage_array = []
-    percentage_array << first_percentage_increase
-    percentage_array << percentage_increase_after_first_week if @weeks > 1
-    percentage_array
+    [
+      *first_percentage_increase,
+      *(percentage_increase_after_first_week if @weeks > 1)
+    ]
   end
 
   def percentage_increase_after_first_week
@@ -22,7 +22,7 @@ class Percent
   end
 
   def average_rate_per_week
-    @average_rate_per_week ||= target_rates_array.each_slice(5).map { |week| week.sum / 5 }
+    @average_rate_per_week ||= target_rates_array.each_slice(5).map { |week| week.sum / 5.0 }
   end
 
   private
