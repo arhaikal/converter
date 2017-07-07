@@ -12,7 +12,7 @@ class FixerApi
     historical_rate = HistoricalRate.new(date: date)
     historical_rate.save
 
-    rate= Rate.new(historical_rate_id: historical_rate.id,
+    rate = Rate.new(historical_rate_id: historical_rate.id,
                                  AUD: api["rates"]["AUD"],
                                  CAD: api["rates"]["CAD"],
                                  CHF: api["rates"]["CHF"],

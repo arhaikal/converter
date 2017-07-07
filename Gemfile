@@ -11,7 +11,6 @@ gem 'chartkick'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'httparty', '~> 0.14.0'
-gem 'iterate'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'normalize-scss', '~> 6.0'
@@ -24,6 +23,9 @@ gem 'simple_form'
 gem 'sugar_refinery', require: 'sugar_refinery/all'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'morrisjs-rails'
+gem 'raphael-rails'
+gem 'mini_racer'
 
 group :development, :test do
   gem 'byebug', platform: :mri

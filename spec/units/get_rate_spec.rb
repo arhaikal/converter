@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 feature 'Get Rate' do
-  feature 'all_dates' do
+  feature 'working_dates' do
     scenario 'gets all dates needed for db' do
       get_rate = GetRate.new("EUR", "USD", 2)
 
       allow(get_rate).to receive(:start_date) { Date.today - 13.days }
       allow(get_rate).to receive(:latest_date) { Date.today }
 
-      expect(get_rate.all_dates.length).to eq(10)
+      expect(get_rate.working_dates.length).to eq(10)
     end
   end
 
@@ -21,7 +21,7 @@ feature 'Get Rate' do
                              { id: 2, date: "Fri, 05 May 2017" },
                              { id: 1, date: "Thu, 04 May 2017" }])
 
-      allow(get_rate).to receive(:all_dates) {
+      allow(get_rate).to receive(:working_dates) {
                                                ["Wed, 10 May 2017",
                                                 "Tue, 09 May 2017",
                                                 "Mon, 08 May 2017",
